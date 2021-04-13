@@ -50,7 +50,7 @@ env/scripts/activate
 ```
 on macOS and Linux
 ```bash
-source env/bin/activate
+source env/scripts/activate
 ```
 * install package 
 ```bash
