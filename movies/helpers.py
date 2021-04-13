@@ -1,4 +1,5 @@
 import requests
+import csv
 
 
 def get_api_key():
@@ -12,7 +13,7 @@ def get_api_key():
 	return api_key
 
 
-def get_movies_from_api(arr_of_movies):
+def get_movies_from_api(movies):
 	"""
 	request every movie
 	in the given array
@@ -21,7 +22,7 @@ def get_movies_from_api(arr_of_movies):
 	arr = []
 	api_key = get_api_key()
 
-	for movie in arr_of_movies:
+	for movie in movies:
 		params = "+".join(movie.split())
 		full_url = (
 			url_base +
@@ -36,3 +37,41 @@ def get_movies_from_api(arr_of_movies):
 			arr.append(response.json())
 
 	return arr
+
+
+def add_movies_to_csv_file(movies):
+	"""
+	function adding given
+	movies to the CSV file
+	"""
+	try:
+		f = open('movies.csv')
+		f.close()
+		with open('movies.csv', 'a') as file:
+			for movie in movies:
+				file.write(f"\n{movie['Title']};{movie['imdbRating']};{movie['BoxOffice']}")
+
+	except OSError:
+		with open('movies.csv', 'w') as file:
+			file.write('Title;imdbRating;BoxOffice')
+
+			for movie in movies:
+				file.write(f"\n{movie['Title']};{movie['imdbRating']};{movie['BoxOffice']}")
+
+
+def sort_movies_by_imdb():
+	"""
+	function sorting all
+	movies by IMDB rating
+	"""
+	try:
+		with open('movies.csv', 'r') as file:
+			movies = [x.split(';') for x in list(file)]
+			del movies[0]
+			sorter = lambda x: (x[1], x[0], x[2])
+			movies = sorted(movies, key=sorter, reverse=True)
+			return movies
+			
+	except OSError:
+		return False
+

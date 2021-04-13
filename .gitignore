@@ -139,3 +139,6 @@ cython_debug/
 
 # key.txt file
 key.txt
+
+# file with added movies inside
+movies.csv
