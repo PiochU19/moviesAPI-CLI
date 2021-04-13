@@ -6,7 +6,7 @@ def get_api_key():
 	Function reading api key
 	from key.txt
 	"""
-	with open('key.txt') as file:
+	with open('key.txt', 'r') as file:
 		api_key = file.readline()
 
 	return api_key
