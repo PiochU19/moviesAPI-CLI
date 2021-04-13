@@ -107,7 +107,7 @@ def top(l):
 @main.command()
 def all():
 	"""
-	Shows all titles of
+	Shows the titles of all
 	movies in your library
 	"""
 	arr_of_titles = titles()
@@ -124,7 +124,7 @@ def all():
 @main.command()
 def profitable():
 	"""
-	Shows most profitable
+	Shows the most profitable
 	movie in your library
 	"""
 	movie = most_profitable()
@@ -141,7 +141,7 @@ def profitable():
 def avg():
 	"""
 	Shows average IMDB rating of
-	movies in your library
+	the movies in your library
 	"""
 	avg = avg_rating()
 

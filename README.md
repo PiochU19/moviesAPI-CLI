@@ -14,7 +14,7 @@ You can add some movies to your library
 ```bash
 movies add
 ```
-You can see all titles of movies in your library
+you can see the titles of all movies in your library
 ```bash
 movies all
 ```
@@ -22,11 +22,11 @@ You can see top [x] movies in your library, by default x is 1
 ```bash
 movies top --l x
 ```
-You can see most profitable movie in your library
+You can see the most profitable movie in your library
 ```bash
 movies profitable
 ```
-You can see average IMDB rating of movies in your library
+You can see average IMDB rating of the movies in your library
 ```bash
 movies avg
 ```
