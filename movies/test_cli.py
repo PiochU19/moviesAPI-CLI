@@ -1,6 +1,5 @@
 from click.testing import CliRunner
 from .cli import main
-from .helpers import delete_files
 
 
 def test_add_without_key():
