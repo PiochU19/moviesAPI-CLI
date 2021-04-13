@@ -5,6 +5,8 @@ from .helpers import (
 	get_movies_from_api,
 	add_movies_to_csv_file,
 	sort_movies_by_imdb,
+	titles,
+	most_profitable,
 )
 
 
@@ -85,6 +87,7 @@ def key(p):
 def top(l):
 	"""
 	Shows top movies
+	in your library
 	"""
 	movies = sort_movies_by_imdb()
 
@@ -103,6 +106,35 @@ def top(l):
 @main.command()
 def all():
 	"""
-	Shows all titles
+	Shows all titles of
+	movies in your library
 	"""
-	titles = 
+	arr_of_titles = titles()
+
+	if arr_of_titles:
+
+		for i in range(len(arr_of_titles)):
+			click.echo(f"{i+1}. {arr_of_titles[i]}")
+
+	else:
+		click.echo("You don't have any movies")
+
+
+@main.command()
+def profitable():
+	"""
+	Shows most profitable
+	movie in your library
+	"""
+	movie = most_profitable()
+
+	click.echo(f"Most profitable movie in you library is {movie[0]} with lifetime gross = {movie[2].strip()}")
+
+
+@main.command()
+def avg():
+	"""
+	Shows average IMDB rating of
+	movies in your library
+	"""
+	avg = 

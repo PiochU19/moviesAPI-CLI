@@ -13,6 +13,18 @@ def get_api_key():
 	return api_key
 
 
+def parse_value(value):
+	"""
+	function parsing given
+	str to int
+	"""
+	value = value.strip()
+	value = value.replace('$', '')
+	value = value.replace(',', '')
+
+	return int(value)
+
+
 def get_movies_from_api(movies):
 	"""
 	request every movie
@@ -70,8 +82,59 @@ def sort_movies_by_imdb():
 			del movies[0]
 			sorter = lambda x: (x[1], x[0], x[2])
 			movies = sorted(movies, key=sorter, reverse=True)
-			return movies
+
+		return movies
 			
 	except OSError:
 		return False
 
+
+def titles():
+	"""
+	function returning
+	array of all titles
+	"""
+	try:
+		with open('movies.csv', 'r') as file:
+			movies = [x.split(';') for x in list(file)]
+			del movies[0]
+			arr_of_titles = []
+
+			for movie in movies:
+				arr_of_titles.append(movie[0])
+
+		return arr_of_titles
+
+	except OSError:
+		return False
+
+
+def most_profitable():
+	"""
+	function returning most
+	profitable movie
+	"""
+	try:
+		with open('movies.csv', 'r') as file:
+			movies = [x.split(';') for x in list(file)]
+			del movies[0]
+			max_value = 0
+			movie_with_max = None
+
+			for movie in movies:
+				value = parse_value(movie[2])
+
+				if value > max_value:
+					max_value = value
+					movie_with_max = movie
+
+			return movie_with_max
+
+	except OSError:
+		return False
+
+
+def avg_rating():
+	"""
+	function 
+	"""
