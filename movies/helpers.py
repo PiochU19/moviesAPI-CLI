@@ -19,6 +19,10 @@ def parse_value(value):
 	str to int
 	"""
 	value = value.strip()
+
+	if value == 'N/A':
+		return 0
+
 	value = value.replace('$', '')
 	value = value.replace(',', '')
 
@@ -61,6 +65,12 @@ def add_movies_to_csv_file(movies):
 		f.close()
 		with open('movies.csv', 'a') as file:
 			for movie in movies:
+				if not 'imdbRating' in movie:
+					movie['imdbRating'] = 'N/A'
+
+				if not 'BoxOffice' in movie:
+					movie['BoxOffice'] = 'N/A'
+
 				file.write(f"\n{movie['Title']};{movie['imdbRating']};{movie['BoxOffice']}")
 
 	except OSError:
@@ -68,6 +78,12 @@ def add_movies_to_csv_file(movies):
 			file.write('Title;imdbRating;BoxOffice')
 
 			for movie in movies:
+				if not 'imdbRating' in movie:
+					movie['imdbRating'] = 'N/A'
+
+				if not 'BoxOffice' in movie:
+					movie['BoxOffice'] = 'N/A'
+
 				file.write(f"\n{movie['Title']};{movie['imdbRating']};{movie['BoxOffice']}")
 
 
@@ -148,7 +164,7 @@ def avg_rating():
 			for movie in movies:
 				sum_of_imdb += float(movie[1])
 
-		return sum_of_imdb / len(movies)
+		return round(sum_of_imdb / len(movies), 2)
 
 	except OSError:
 		return False

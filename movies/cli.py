@@ -128,9 +128,11 @@ def profitable():
 	movie in your library
 	"""
 	movie = most_profitable()
-	
+
 	if movie:
 		click.echo(f"Most profitable movie in you library is {movie[0]} with lifetime gross = {movie[2].strip()}")
+	elif movie == None:
+		click.echo("Unfortunately, movies in your libarary don't have BoxOffice given")
 	else:
 		click.echo("You don't have any movies")
 
