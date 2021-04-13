@@ -7,6 +7,7 @@ from .helpers import (
 	sort_movies_by_imdb,
 	titles,
 	most_profitable,
+	avg_rating
 )
 
 
@@ -127,8 +128,11 @@ def profitable():
 	movie in your library
 	"""
 	movie = most_profitable()
-
-	click.echo(f"Most profitable movie in you library is {movie[0]} with lifetime gross = {movie[2].strip()}")
+	
+	if movie:
+		click.echo(f"Most profitable movie in you library is {movie[0]} with lifetime gross = {movie[2].strip()}")
+	else:
+		click.echo("You don't have any movies")
 
 
 @main.command()
@@ -137,4 +141,9 @@ def avg():
 	Shows average IMDB rating of
 	movies in your library
 	"""
-	avg = 
+	avg = avg_rating()
+
+	if avg:
+		click.echo(f"Average IMDB rating of movies in your library is {avg}")
+	else:
+		click.echo("You don't have any movies")

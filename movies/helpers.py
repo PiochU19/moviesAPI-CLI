@@ -136,5 +136,19 @@ def most_profitable():
 
 def avg_rating():
 	"""
-	function 
+	function returning
+	average IMDB rating
 	"""
+	try:
+		with open('movies.csv', 'r') as file:
+			movies = [x.split(';') for x in list(file)]
+			del movies[0]
+			sum_of_imdb = 0
+
+			for movie in movies:
+				sum_of_imdb += float(movie[1])
+
+		return sum_of_imdb / len(movies)
+
+	except OSError:
+		return False
