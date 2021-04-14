@@ -7,7 +7,8 @@ from .helpers import (
 	sort_movies_by_imdb,
 	titles,
 	most_profitable,
-	avg_rating
+	avg_rating,
+	clear_library,
 )
 
 
@@ -149,3 +150,13 @@ def avg():
 		click.echo(f"Average IMDB rating of movies in your library is {avg}")
 	else:
 		click.echo("You don't have any movies")
+
+
+@main.command()
+def clear():
+	"""
+	Clears up your library
+	"""
+	if click.confirm("Are you sure?"):
+		clear_library()
+		click.echo('Files deleted')

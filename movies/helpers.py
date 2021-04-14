@@ -1,5 +1,6 @@
 import requests
 import csv
+import os
 
 
 def get_api_key():
@@ -168,3 +169,20 @@ def avg_rating():
 
 	except OSError:
 		return False
+
+
+def clear_library():
+	"""
+	Function removes files
+	"""
+	try:
+		os.remove('key.txt')
+	except OSError:
+		return False
+	
+	try:
+		os.remove('movies.csv')
+	except OSError:
+		return False
+
+	return True

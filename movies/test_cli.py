@@ -2,6 +2,14 @@ from click.testing import CliRunner
 from .cli import main
 
 
+def test_delete_before_tests():
+	runner = CliRunner()
+
+	result = runner.invoke(main, ['clear'], input='y')
+	assert result.exit_code == 0
+	assert 'Files deleted' in result.output
+
+
 def test_add_without_key():
 	runner = CliRunner()
 
@@ -99,3 +107,11 @@ def test_avg():
 	result = runner.invoke(main, ['avg'])
 	assert result.exit_code == 0
 	assert 'Average IMDB rating of movies in your library is 8.5' in result.output
+
+
+def test_after_before_tests():
+	runner = CliRunner()
+
+	result = runner.invoke(main, ['clear'], input='y')
+	assert result.exit_code == 0
+	assert 'Files deleted' in result.output
