@@ -30,6 +30,10 @@ You can see average IMDB rating of the movies in your library
 ```bash
 movies avg
 ```
+You can clear up your whole library
+```bash
+movies clear
+```
 
 ## Installation
 
@@ -50,7 +54,7 @@ env/scripts/activate
 ```
 on macOS and Linux
 ```bash
-source env/scripts/activate
+source env/Scripts/activate
 ```
 * install package 
 ```bash
@@ -65,5 +69,3 @@ py.test
 As you can see below, I've already done it
 
 ![tests](https://github.com/PiochU19/moviesAPI-CLI/blob/main/tests.PNG?raw=true)
-
-### Remember to delete files key.txt and movies.csv after running tests
